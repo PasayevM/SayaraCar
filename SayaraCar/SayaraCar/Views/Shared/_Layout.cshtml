@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MirAuto - Avtomobil hissələri</title>
+    <link rel="icon" href="../assets/images/thumbnail.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap"
+    />
+    <link rel="stylesheet" href="../assets/css/plugins.css" />
+    <link rel="stylesheet" href="../assets/css/default.css" />
+    <link rel="stylesheet" href="../assets/css/color.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- ********************     Preolader Start    ********************* -->
+    <div id="preloader">
+      <div class="spinner">
+        <img src="~/assets/images/preloader.gif" alt="Home" />
+      </div>
+    </div>
+    <!-- ********************     Preolader End    ********************* -->
+    <!-- ************************************************************** -->
+
+    @await Component.InvokeAsync("Header")
+
+@RenderBody()
+
+           <!-- ********************     Footer Start   ********************* -->
+
+   @await Component.InvokeAsync("Footer")
+    <!-- ********************     Footer End     ********************* -->
+    <!-- *************************************************************** -->
+
+    <!-- ********************     Back to Top Start   ********************* -->
+    <div id="backtotop"><i class="fal fa-lg fa-arrow-up"></i></div>
+    <!-- ********************     Back to Top End     ********************* -->
+    <!-- *************************************************************** -->
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="~/assets/js/plugins.js"></script>
+    <script src="~/assets/js/main.js"></script>
+  </body>
+</html>

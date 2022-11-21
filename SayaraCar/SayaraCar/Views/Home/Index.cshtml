@@ -1,0 +1,1099 @@
+﻿@model   HomeVM
+<main>
+        <!-- ********************     Banner Start    ********************* -->
+    <section
+      class="banner"
+      style="
+        background: url(../assets/images/@Model.Banners.Image);
+      "
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner-content">
+              <h1>
+                @Html.Raw(Model.Banners.Title)
+              </h1>
+              <p>@Model.Banners.Description</p>
+            </div>
+            <div class="brands_form">
+              <form method="GET" action="#">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <div class="sayara-custom-select">
+                      <select name="pa_car-brand" id="car-brand">
+                        <option value="-1" disabled selected>
+                          Brand Chevrolet
+                        </option>
+                        @foreach (BannerModel bannerModel in Model.BannerModels)
+                           {
+                                   <option value="@bannerModel.Choice">@bannerModel.Choice</option>
+                           }
+                      </select>
+                    </div>
+                  </li>
+                  <li class="list-inline-item">
+                    <div class="sayara-custom-select">
+                      <select name="pa_car-type" id="car-type">
+                        <option value="-1" disabled selected>Type</option>
+                        @foreach (BannerType bannerType in Model.BannerTypes)
+                        {
+                                <option value="@bannerType.Choice">@bannerType.Choice</option>
+                        }
+                      </select>
+                    </div>
+                  </li>
+                  <li class="list-inline-item">
+                    <div class="sayara-custom-select">
+                      <select name="pa_color" id="color">
+                        <option value="-1" disabled selected>Color</option>
+                        @foreach (BannerColor bannerColor in Model.BannerColors)
+                        {
+                                    <option value="@bannerColor.Choice">@bannerColor.Choice</option>
+                        }
+                      </select>
+                    </div>
+                  </li>
+                  <li class="list-inline-item">
+                    <input type="submit" value="Search" />
+                    <input type="hidden" name="post_type" value="product" />
+                  </li>
+                </ul>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ********************     Banner End    ********************* -->
+    <!-- ************************************************************** -->
+
+
+    <!-- ********************     Service Start    ********************* -->
+    <section class="myService pt-30 pb-30 bg-gray">
+      <div class="container">
+        <div class="row">
+          @foreach (Service service in Model.Services)
+                {
+                        <div class="col-md-3">
+                 <div
+                   class="iconbox-item wow fadeInLeft"
+                   data-wow-duration="2s"
+                   data-wow-delay="0.2s"
+                 >
+                  <div><i class="@service.Icon"></i></div>
+                   <div>
+                    <h5>@service.Title</h5>
+                    <p>@service.SubTitle</p>
+                   </div>
+                  </div>
+                 </div>
+                }
+        </div>
+      </div>
+    </section>
+    <!-- ********************     Service End    ********************* -->
+    <!-- ************************************************************** -->
+
+    <!-- ********************     Preview Start   ********************* -->
+    <section class="myPreview pt-60 pb-60">
+      <div class="container">
+        <div class="row">
+          @foreach (Preview preview in Model.Previews)
+                {
+                        <div class="col-lg-4">
+                <section
+              class="ad-banner horizontal wow fadeInLeft"
+              data-wow-duration="2s"
+              data-wow-delay="0.2s"
+              style="
+                padding: 30px;
+                background-image: url(../assets/images/@preview.Image);
+              "
+            >
+                  <div class="container">
+                    <div class="row justify-content-between">
+                      <div class="col-md-12 text-left">
+                        <p>@preview.Title</p>
+                        <h2 class="mb-5">@preview.Description</h2>
+                        <a class="sayara-btn" href="shop.html">İndi al</a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+                }
+        </div>
+      </div>
+    </section>
+    <!-- ********************      Preview End     ********************* -->
+    <!-- *************************************************************** -->
+
+
+    <!-- ********************     Products Start   ********************* -->
+    <section
+      class="myProduct pt-100 pb-145 bg-gray wow fadeInUp"
+      data-wow-duration="2s"
+      data-wow-delay="0.2s"
+    >
+      <div class="container">
+        <div
+          class="product-filter d-flex justify-content-center"
+          id="product-filter"
+        >
+          <h4>Ən son Mallar</h4>
+        </div>
+
+        <div class="tab-content">
+          <div class="container tab-pane p-0 active">
+            <div
+              class="product-items"
+              data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'
+            >
+              @foreach (Product product in Model.Products)
+                        {
+                                <div>
+                    <div class="product-item">
+                      <div class="product-item-image">
+                        <a href="shop-single.html">
+                          <img src="~/assets/images/@product.Image" alt="Image" />
+                        </a>
+                      </div>
+                      <div class="product-item-content">
+                        <a href="shop.html">@product.Name</a>
+                        <a href="shop-single.html">
+                          <h5>@product.Description</h5>
+                        </a>
+                        <ul class="list-inline mb-0">
+                          <li class="list-inline-item">
+                            <p class="price">
+                              <span class="woocommerce-Price-amount amount"
+                            >@Html.Raw(product.Price)
+                            </p>
+                          </li>
+                          <li class="list-inline-item float-right">
+                            <div class="star-rating">
+                             @Html.Raw(product.Raiting)
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="product-item-overlay">
+                        <a href="cart.html" class="button">Add to cart</a>
+                      </div>
+                      <a class="ajax-quick-view-popup" href="quick-view-popup.html">
+                        <i class="fas fa-search-plus"></i>
+                      </a>
+                    </div>
+                  </div>
+                        }
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ********************     Products End     ********************* -->
+    <!-- *************************************************************** -->
+
+
+    <!-- ********************     CallToAction Start   ********************* -->
+    <section class="call-to-action">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-8 wow fadeInLeft text-center"
+            data-wow-duration="2s"
+            data-wow-delay="0.2s"
+          >
+            <h1>Ən ucuz Mallar Bizdə</h1>
+            <p>Daimi Müştərilərə endirimlər</p>
+          </div>
+          <div
+            class="col-lg-4 wow fadeInRight"
+            data-wow-duration="2s"
+            data-wow-delay="0.2s"
+          >
+            <img
+              width="476"
+              height="450"
+              src="~/assets/images/tire.png"
+              alt="Tire"
+            />
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+    <!-- ********************     CallToAction End     ********************* -->
+    <!-- *************************************************************** -->
+
+
+    <!-- ********************     Category Start   ********************* -->
+    <section
+      class="myCategory pt-100 pb-100 bg-gray wow fadeInUp"
+      data-wow-duration="2s"
+      data-wow-delay="0.2s"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <section
+              class="ad-banner vertical"
+              style="
+                background-image: url('assets/../images/car-driving-fast-sports-car-18296.jpg');
+              "
+            >
+              <div class="container">
+                <div class="row justify-content-between">
+                  <div class="text-left">
+                    <h3>Wheels Rim</h3>
+                    <p class="mb-4">Low Prices. Price match guarantee</p>
+                    <ul class="list-unstyled mb-4">
+                      <li><a href="shop.html">Headlights & Lighting</a></li>
+                      <li><a href="shop.html">Brakes & Suspension</a></li>
+                      <li><a href="shop.html">Body Parts</a></li>
+                      <li><a href="shop.html">Interior Parts</a></li>
+                      <li><a href="shop.html">Engine & Drivetrain</a></li>
+                      <li><a href="shop.html">Tools & Garage</a></li>
+                    </ul>
+                    <a class="sayara-btn" href="shop.html">Shop Now</a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="col-lg-9">
+            <div class="container">
+              <div class="product-filter">
+                <div class="float-left">
+                  <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                      <a
+                        class="nav-link active"
+                        data-toggle="tab"
+                        href="#tools-garage"
+                        >Tools & Garage</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="product-items"
+                data-slick='{"slidesToShow": 3, "slidesToScroll": 1}'
+              >
+                <div>
+                  <div class="product-item">
+                    <div class="product-item-image">
+                      <a href="shop-single.html">
+                        <img src="~/assets/images/pic-12.jpg" alt="Image" />
+                      </a>
+                    </div>
+                    <div class="product-item-content">
+                      <a href="shop.html">Tools & Garage</a>
+                      <a href="shop-single.html">
+                        <h5>Aluminum Wheels</h5>
+                      </a>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <p class="price">
+                            <span class="woocommerce-Price-amount amount"
+                              ><span class="woocommerce-Price-currencySymbol"
+                                >&#36;</span
+                              >563.00</span
+                            >
+                          </p>
+                        </li>
+                        <li class="list-inline-item float-right">
+                          <div class="star-rating">
+                            <span style="width: 60%"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item-overlay">
+                      <a href="cart.html" class="button">Add to cart</a>
+                    </div>
+                    <a
+                      class="ajax-quick-view-popup"
+                      href="quick-view-popup.html"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <div class="product-item">
+                    <div class="product-item-image">
+                      <a href="shop-single.html">
+                        <img src="~/assets/images/pic-4.jpg" alt="Image" />
+                      </a>
+                    </div>
+                    <div class="product-item-content">
+                      <a href="shop.html">Brake Pad Sets</a>
+                      <a href="shop-single.html">
+                        <h5>Mount 3-Pedal Assembly</h5>
+                      </a>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <p class="price">
+                            <span class="woocommerce-Price-amount amount"
+                              ><span class="woocommerce-Price-currencySymbol"
+                                >&#36;</span
+                              >563.00</span
+                            >
+                          </p>
+                        </li>
+                        <li class="list-inline-item float-right">
+                          <div class="star-rating">
+                            <span style="width: 60%"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item-overlay">
+                      <a href="cart.html" class="button">Add to cart</a>
+                    </div>
+                    <a
+                      class="ajax-quick-view-popup"
+                      href="quick-view-popup.html"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <div class="product-item">
+                    <div class="product-item-image">
+                      <a href="shop-single.html">
+                        <img src="~/assets/images/pic-2.jpg" alt="Image" />
+                      </a>
+                    </div>
+                    <div class="product-item-content">
+                      <a href="shop.html">Air Suspension</a>
+                      <a href="shop-single.html">
+                        <h5>AC Delco Coil Springs</h5>
+                      </a>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <p class="price">
+                            <span class="woocommerce-Price-amount amount"
+                              ><span class="woocommerce-Price-currencySymbol"
+                                >&#36;</span
+                              >563.00</span
+                            >
+                          </p>
+                        </li>
+                        <li class="list-inline-item float-right">
+                          <div class="star-rating">
+                            <span style="width: 60%"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item-overlay">
+                      <a href="cart.html" class="button">Add to cart</a>
+                    </div>
+                    <a
+                      class="ajax-quick-view-popup"
+                      href="quick-view-popup.html"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <div class="product-item">
+                    <div class="product-item-image">
+                      <a href="shop-single.html">
+                        <img src="~/assets/images/pic-1.jpg" alt="Image" />
+                      </a>
+                    </div>
+                    <div class="product-item-content">
+                      <a href="shop.html">Air Filters</a>
+                      <a href="shop-single.html">
+                        <h5>Air Filters</h5>
+                      </a>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <p class="price">
+                            <span class="woocommerce-Price-amount amount"
+                              ><span class="woocommerce-Price-currencySymbol"
+                                >&#36;</span
+                              >563.00</span
+                            >
+                          </p>
+                        </li>
+                        <li class="list-inline-item float-right">
+                          <div class="star-rating">
+                            <span style="width: 60%"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item-overlay">
+                      <a href="cart.html" class="button">Add to cart</a>
+                    </div>
+                    <a
+                      class="ajax-quick-view-popup"
+                      href="quick-view-popup.html"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <div class="product-item">
+                    <div class="product-item-image">
+                      <a href="shop-single.html">
+                        <img src="~/assets/images/pic-20.jpg" alt="Image" />
+                      </a>
+                    </div>
+                    <div class="product-item-content">
+                      <a href="shop.html">Exhaust</a>
+                      <a href="shop-single.html">
+                        <h5>Twin Exhaust Pipe</h5>
+                      </a>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <p class="price">
+                            <span class="woocommerce-Price-amount amount"
+                              ><span class="woocommerce-Price-currencySymbol"
+                                >&#36;</span
+                              >563.00</span
+                            >
+                          </p>
+                        </li>
+                        <li class="list-inline-item float-right">
+                          <div class="star-rating">
+                            <span style="width: 60%"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item-overlay">
+                      <a href="cart.html" class="button">Add to cart</a>
+                    </div>
+                    <a
+                      class="ajax-quick-view-popup"
+                      href="quick-view-popup.html"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <div class="product-item">
+                    <div class="product-item-image">
+                      <a href="shop-single.html">
+                        <img src="~/assets/images/pic-19.jpg" alt="Image" />
+                      </a>
+                    </div>
+                    <div class="product-item-content">
+                      <a href="shop.html">Engine & Drivetrain</a>
+                      <a href="shop-single.html">
+                        <h5>Engine Maintenance Kit</h5>
+                      </a>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <p class="price">
+                            <span class="woocommerce-Price-amount amount"
+                              ><span class="woocommerce-Price-currencySymbol"
+                                >&#36;</span
+                              >563.00</span
+                            >
+                          </p>
+                        </li>
+                        <li class="list-inline-item float-right">
+                          <div class="star-rating">
+                            <span style="width: 60%"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item-overlay">
+                      <a href="cart.html" class="button">Add to cart</a>
+                    </div>
+                    <a
+                      class="ajax-quick-view-popup"
+                      href="quick-view-popup.html"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <div class="product-item">
+                    <div class="product-item-image">
+                      <a href="shop-single.html">
+                        <img src="~/assets/images/pic-29.jpg" alt="Image" />
+                      </a>
+                    </div>
+                    <div class="product-item-content">
+                      <a href="shop.html">Engine & Drivetrain</a>
+                      <a href="shop-single.html">
+                        <h5>OE Replacement Engine</h5>
+                      </a>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <p class="price">
+                            <span class="woocommerce-Price-amount amount"
+                              ><span class="woocommerce-Price-currencySymbol"
+                                >&#36;</span
+                              >563.00</span
+                            >
+                          </p>
+                        </li>
+                        <li class="list-inline-item float-right">
+                          <div class="star-rating">
+                            <span style="width: 60%"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item-overlay">
+                      <a href="cart.html" class="button">Add to cart</a>
+                    </div>
+                    <a
+                      class="ajax-quick-view-popup"
+                      href="quick-view-popup.html"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ********************     Category End     ********************* -->
+    <!-- *************************************************************** -->
+
+    <!-- ********************     Preview Col-6 Start   ********************* -->
+    <section class="myPreview2 pt-60 pb-60">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <section
+              class="ad-banner horizontal wow fadeInLeft"
+              data-wow-duration="2s"
+              data-wow-delay="0.2s"
+              style="
+                background-image: url(../assets/images/black-mercedes-benz-sports-car-interior-1104768.jpg);
+              "
+            >
+              <div class="container">
+                <div class="row justify-content-between">
+                  <div class="col-md-12 text-left">
+                    <p>Gələcəyin eletrik alətləri</p>
+                    <h2 class="mb-5">Təkərlər</h2>
+                    <a class="sayara-btn" href="#">İndi al</a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="col-lg-6">
+            <section
+              class="ad-banner horizontal wow fadeInRight"
+              data-wow-duration="2s"
+              data-wow-delay="0.2s"
+              style="
+                background-image: url(../assets/images/black-and-white-round-car-air-filter-159293.jpg);
+              "
+            >
+              <div class="container">
+                <div class="row justify-content-between">
+                  <div class="col-md-12 text-left">
+                    <p>Hər hansı bir vasitə üçün</p>
+                    <h2 class="mb-5">Ehtiyat hissələri</h2>
+                    <a class="sayara-btn" href="#">İndi al</a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ********************      Preview Col-6 End     ********************* -->
+    <!-- *************************************************************** -->
+
+    <!-- ********************     Products-2- Start   ********************* -->
+    <section
+      class="myProduct2 pb-70 wow fadeInUp"
+      data-wow-duration="2s"
+      data-wow-delay="0.2s"
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/Light-5.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>DRL Bar Projector Headlights</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/pic-29.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>6 Speed Gearbox</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/pic-4.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>Floor Mount 3-Pedal Assembly</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/pic-1.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>Air Intake Pump</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/prod_2_deposit_opt.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>DRL Bar Projector Headlights</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/pic-12.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>Aluminum Wheels Concave Rim</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/pic-16.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>Braking Blocks</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/pro-3.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>Brandix Brake Kit</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="product-item style-2">
+              <div class="product-item-image">
+                <a href="shop-single.html">
+                  <img src="~/assets/images/Light-5.jpg" alt="Image" />
+                </a>
+              </div>
+              <div class="product-item-content">
+                <a href="shop-single.html">
+                  <h5>DRL Bar Projector Headlights</h5>
+                </a>
+                <div class="woocommerce-product-rating">
+                  <div
+                    class="star-rating"
+                    role="img"
+                    aria-label="Rated 3.00 out of 5"
+                  >
+                    <span style="width: 60%"
+                      >Rated <strong class="rating">3.00</strong> out of 5 based
+                      on <span class="rating">1</span> customer rating</span
+                    >
+                  </div>
+                  <a
+                    href="#reviews"
+                    class="woocommerce-review-link"
+                    rel="nofollow"
+                    >(<span class="count">1</span> customer review)</a
+                  >
+                </div>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                    ><span class="woocommerce-Price-currencySymbol">$</span
+                    >456.00</span
+                  >
+                </p>
+              </div>
+              <a
+                class="ajax-quick-view-popup"
+                href="quick-view-popup.html"
+                data-product-id="104"
+              >
+                <i class="fas fa-search-plus"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ********************     Produtts End     ********************* -->
+    <!-- *************************************************************** -->
+
+
+    <!-- ********************     Blogs Start   ********************* -->
+    <section
+      class="myBlogs pt-100 pb-70 bg-gray wow fadeInUp"
+      data-wow-duration="2s"
+      data-wow-delay="0.2s"
+    >
+      <div class="container">
+        <div class="row pb-40">
+          <div class="col-lg-6">
+            <h3>Latest Article</h3>
+          </div>
+          <div class="col-lg-6">
+            <div class="text-right">
+              <a class="sayara-btn" href="#">Read Articles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row justify-content-center">
+         
+            @foreach (Blog blog in Model.Blogs)
+                {
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-md-6">
+                <div class="blog-item">
+                  <div class="blog-thumb">
+                    <a href="single.html">
+                      <img
+                    src="~/assets/images/@blog.Image"
+                    alt="sayara"
+                  />
+                    </a>
+                    <span class="date">@blog.Date</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      @Html.Raw(blog.Title)
+                    </div>
+                    <h4>
+                      <a href="single.html">@blog.Name</a>
+                    </h4>
+                    <p>
+                      @blog.Description
+                    </p>
+                  </div>
+                </div>
+              </div>
+                }
+        </div>
+      </div>
+    </section>
+    <!-- ********************     Blogs End     ********************* -->
+    <!-- *************************************************************** -->
+
+
+   </main>
